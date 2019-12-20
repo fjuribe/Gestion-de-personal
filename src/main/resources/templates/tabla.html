@@ -20,6 +20,7 @@
 				<th>Fecha de Publicacion</th>
 				<th>Salario Ofrecido</th>
 				<th>Descripcion</th>
+				<th>Destacada</th>
 			</tr>
 			<tr th:each="vacante:${vacantes}">
 				<td th:text="${vacante.id}"></td>
@@ -27,7 +28,14 @@
 				<td th:text="${vacante.fecha}"></td>
 				<td th:text="${vacante.salario}"></td>
 				<td th:text="${vacante.descripcion}"></td>
+				<!-- 				<td th:text="${vacante.destacado}"></td> -->
+				<!--                   <td th:text="${vacante.destacado==1 ? 'Si':'No'}"></td> -->
 
+				<td><span th:if="${vacante.destacado==1}"
+					class="badge badge-success">SI</span> <span
+					th:unless="${vacante.destacado==1}" class="badge badge-danger">No</span>
+
+				</td>
 			</tr>
 		</table>
 
