@@ -5,6 +5,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <h1>formulario de categoria</h1>
+	<h1>formulario de categoria</h1>
+
+
+	<form th:action="@{/categorias/save}" method="post">
+		<fieldset>
+			<legend>Personal information:</legend>
+			 Nombre:
+			 <br>    
+			 <input type="text" name="nombre" value=""><br>
+			 
+			 
+			 Descripcion
+			 <br> 
+			 <input type="text" name="descripcion" value=""><br>
+			<br> 
+			
+			<input type="submit" value="Guardar">
+		</fieldset>
+	</form>
 </body>
 </html>
