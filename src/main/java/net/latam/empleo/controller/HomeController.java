@@ -18,6 +18,7 @@ public class HomeController {
 	private IVacanteService serviceVacantes;
 	
 	
+	
 	@GetMapping("/tabla")
 	public String mostrarTabla(Model model) {
 		List<Vacante> lista=serviceVacantes.buscarTodas();
