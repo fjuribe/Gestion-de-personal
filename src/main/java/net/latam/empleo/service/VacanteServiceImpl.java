@@ -1,11 +1,14 @@
 package net.latam.empleo.service;
-
 import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import net.latam.empleo.model.Vacante;
 
+
+@Service
 public class VacanteServiceImpl implements IVacanteService{
 
 	private List<Vacante> lista=null;
