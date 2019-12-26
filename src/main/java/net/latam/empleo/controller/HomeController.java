@@ -18,7 +18,6 @@ public class HomeController {
 	private IVacanteService serviceVacantes;
 	
 	
-	
 	@GetMapping("/tabla")
 	public String mostrarTabla(Model model) {
 		List<Vacante> lista=serviceVacantes.buscarTodas();
@@ -57,18 +56,8 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String mostrarHome(Model model) {
-//		model.addAttribute("mensaje","Bienvenido a empleos App");
-//		model.addAttribute("fecha",new Date());
-		
-		String nombre="Auxiliar de contabilidad";
-		Date fechaPub=new Date();
-		double salario=9000.0;
-		boolean vigente=true;
-		
-		model.addAttribute("nombre",nombre);
-		model.addAttribute("fecha", fechaPub);
-		model.addAttribute("salario",salario);
-		model.addAttribute("vigente", vigente);
+	List<Vacante> lista=serviceVacantes.buscarTodas();
+		model.addAttribute("vacantes",lista);
 		return "home";	
 	}
 	
