@@ -1,13 +1,20 @@
 package net.latam.empleo.controller;
+import java.util.Date;
+import java.util.List;
+import java.text.SimpleDateFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 import net.latam.empleo.model.Vacante;
 import net.latam.empleo.service.IVacanteService;
@@ -20,27 +27,55 @@ public class VacantesController {
 	private IVacanteService serviceVacantes;
 	
 	
+	@GetMapping("/index")
+	public String mostrarIndex(Model model) {
+		
+		//TODO 1: Obtener todas las vacantes (recuperarlas con la clase de servicio)
+		List<Vacante> lista=serviceVacantes.buscarTodas();
+		
+		//TODO 2: Agregar el modelo al listado de vacantes
+		model.addAttribute("vacantes",lista);
+		
+		
+		//TODO 3: Renderizar las vacantes en la vista (integrar el archivo template-empleos/listVacante.html)
+		//TODO 4: Agregar al menu opcion llamada "vacantes" configuracion la URL "vacantes/index"
+		return "vacantes/listVacantes";
+		
+	}
+	
 	@GetMapping("/create")
 	public String crear() {
 		return "vacantes/formVacantes";
 	}
 	
+	
+	
+	
 	@PostMapping("/save")
-	public String guardar(@RequestParam("nombre") String nombre,@RequestParam("descripcion") String descripcion,@RequestParam("categoria") int categoria,
-			@RequestParam("estatus") String estatus,@RequestParam("fecha") String fecha,@RequestParam("destacado") int destacado,@RequestParam("salario") double salario,
-			@RequestParam("detalles") String detalles) {
+	public String guardar(Vacante vacante) {
+		serviceVacantes.guardar(vacante);
+		System.out.println("objeto vacante:"+vacante);
 		
-		System.out.println("Nombre vacante:"+nombre);
-		System.out.println("Descripción:"+descripcion);
-		System.out.println("Categoria:"+categoria);
-		System.out.println("Estatus:"+estatus);
-		System.out.println("Fecha Publicación:"+fecha);
-		System.out.println("Destacado:"+destacado);
-		System.out.println("Salario Ofrecido:"+salario);
-		System.out.println("Detalles:"+detalles);
 		
 		return "vacantes/listVacantes";
 	}
+	
+//	@PostMapping("/save")
+//	public String guardar(@RequestParam("nombre") String nombre,@RequestParam("descripcion") String descripcion,@RequestParam("categoria") int categoria,
+//			@RequestParam("estatus") String estatus,@RequestParam("fecha") String fecha,@RequestParam("destacado") int destacado,@RequestParam("salario") double salario,
+//			@RequestParam("detalles") String detalles) {
+//		
+//		System.out.println("Nombre vacante:"+nombre);
+//		System.out.println("Descripción:"+descripcion);
+//		System.out.println("Categoria:"+categoria);
+//		System.out.println("Estatus:"+estatus);
+//		System.out.println("Fecha Publicación:"+fecha);
+//		System.out.println("Destacado:"+destacado);
+//		System.out.println("Salario Ofrecido:"+salario);
+//		System.out.println("Detalles:"+detalles);
+//		
+//		return "vacantes/listVacantes";
+//	}
 	
 	@GetMapping("/delete")
 	public String eliminar(@RequestParam("id") int idVacante,Model model) {
@@ -63,4 +98,11 @@ public class VacantesController {
 		return "detalle";
 		
 	}
+	
+	@InitBinder
+	public void initBinder(WebDataBinder webDataBinder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+	}
+
 }
