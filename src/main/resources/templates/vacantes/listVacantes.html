@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,10 +17,9 @@
   </head>
 
   <body>
-    <header th:insert="fragments/menu::menu-principal">
   
-    </header>  
-
+    <header th:insert="fragments/menu.html::menu-principal"></header>
+    
     <main role="main">     
       <hr>
       <div class="container"> 
@@ -28,7 +27,7 @@
         <div class="card">
           <h4 class="card-header"><strong>Listado de Ofertas de Trabajo</strong></h4>              
           <div class="card-body">
-            <a class="btn btn-primary" href="#" title="Crear nueva Oferta de Trabajo" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>            
+            <a class="btn btn-primary" th:href="@{/vacantes/create}" title="Crear nueva Oferta de Trabajo" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>            
             <hr>
             <table class="table table-hover">
               <thead class="thead-light">
@@ -42,13 +41,34 @@
                 </tr>
               </thead>
               <tbody>
-                <tr th:each="vacas:${vacantes}">
-                
-                  <td ></td>
-                  <td th:text="${vacas.nombre}"></td>                  
-                  <td th:text="${vacas.fecha}"></td>
-                  <td th:text="${vacas.estatus}"></td>
-                  <td th:text="${vacas.destacado==1?'SI':'NO'}"></td>
+                <tr>
+                  <td>Ventas</td>
+                  <td>Supervisor de Ventas</td>                  
+                  <td>11-01-2019</td>
+                  <td>Creada</td>
+                  <td>SI</td>
+                  <td>
+                    <a href="#" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a href="#" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Finanzas</td>
+                  <td>Contador Público</td>                  
+                  <td>15-01-2019</td>
+                  <td>Aprobada</td>
+                  <td>SI</td>
+                  <td>
+                    <a href="#" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a href="#" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Desarrollo de Software</td>
+                  <td>Programador web Laravel, MySQL y Javascript</td>                  
+                  <td>11-05-2019</td>
+                  <td>Eliminada</td>
+                  <td>SI</td>
                   <td>
                     <a href="#" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
                     <a href="#" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
@@ -64,9 +84,7 @@
 
     </main>
 
-    <footer class="footer" th:insert="fragments/footer::pie-pagina">
-     
-    </footer>
+    <footer th:insert="fragments/footer.html::pie-pagina" class="footer"></footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
