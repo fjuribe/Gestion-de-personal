@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import net.latam.empleo.model.Vacante;
 import net.latam.empleo.service.IVacanteService;
@@ -52,7 +52,7 @@ public class VacantesController {
 	
 	
 	@PostMapping("/save")
-	public String guardar(Vacante vacante,BindingResult result) {
+	public String guardar(Vacante vacante,BindingResult result,RedirectAttributes attributes) {
 		
 		/*para ver los errores */
 		if (result.hasErrors()) {
@@ -65,6 +65,7 @@ public class VacantesController {
 			return "vacantes/formVacantes";
 		}
 		serviceVacantes.guardar(vacante);
+		attributes.addFlashAttribute("msg", "registro guardado");
 		System.out.println("objeto vacante:"+vacante);
 		
 		
