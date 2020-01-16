@@ -1,6 +1,7 @@
 package net.latam.empleo.controller;
 import java.util.Date;
 import java.util.List;
+import java.lang.ProcessBuilder.Redirect;
 import java.text.SimpleDateFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,6 @@ public class VacantesController {
 		//TODO 2: Agregar el modelo al listado de vacantes
 		model.addAttribute("vacantes",lista);
 		
-		
 		//TODO 3: Renderizar las vacantes en la vista (integrar el archivo template-empleos/listVacante.html)
 		//TODO 4: Agregar al menu opcion llamada "vacantes" configuracion la URL "vacantes/index"
 		return "vacantes/listVacantes";
@@ -68,7 +68,7 @@ public class VacantesController {
 		System.out.println("objeto vacante:"+vacante);
 		
 		
-		return "vacantes/listVacantes";
+		return "redirect:/vacantes/index";
 	}
 	
 //	@PostMapping("/save")
