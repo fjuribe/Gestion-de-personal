@@ -51,7 +51,7 @@
 									<label for="nombre">Nombre</label> <input type="text"
 										class="form-control" id="nombre" name="nombre"
 										placeholder="Titulo de la oferta de trabajo"
-										required="required">
+										required="required" th:field="*{nombre}">
 								</div>
 							</div>
 							<div class="col-md-9">
@@ -59,7 +59,7 @@
 									<label for="descripcion">Descripción</label> <input type="text"
 										class="form-control" id="descripcion" name="descripcion"
 										placeholder="Breve descripcion de la oferta de trabajo"
-										required="required">
+										required="required" th:field="*{descripcion}">
 								</div>
 							</div>
 						</div>
@@ -80,7 +80,7 @@
 							<div class="col-md-3">
 								<div class="form-group">
 									<label for="estatus">Estatus</label> <select
-										class="form-control" name="estatus" id="estatus">
+										class="form-control" name="estatus" id="estatus" th:field="*{estatus}"> 
 										<option value="Creada">Creada</option>
 										<option value="Aprobada">Aprobada</option>
 										<option value="Eliminada">Eliminada</option>
@@ -91,19 +91,19 @@
 								<div class="form-group">
 									<label for="fecha">Fecha de Publicación</label> <input
 										type="text" class="form-control" name="fecha" id="fecha"
-										placeholder="Fecha de publicacion" required="required">
+										placeholder="Fecha de publicacion" required="required" th:field="*{fecha}">
 								</div>
 							</div>
 							<div class="col-md-3">
 								<div class="form-check">
 									<label class="form-check-label" for="destacado0"></label><br>
 									<input class="form-check-input" type="radio" name="destacado"
-										id="destacado" value="1" checked="checked"> <label
+										id="destacado" value="1" checked="checked" th:field="*{destacado}"> <label
 										class="form-check-label" for="destacado1">Destacado</label>
 								</div>
 								<div class="form-check">
 									<input class="form-check-input" type="radio" name="destacado"
-										id="destacado" value="0"> <label
+										id="destacado" value="0" th:field="*{destacado}"> <label
 										class="form-check-label" for="destacado2">No Destacado</label>
 								</div>
 							</div>
@@ -113,7 +113,7 @@
 								<div class="form-group">
 									<label for="salario">Salario Ofrecido (Aprox)</label> <input
 										type="text" class="form-control" name="salario" id="salario"
-										placeholder="Salario aproximado." required="required">
+										placeholder="Salario aproximado." required="required" th:field="*{salario}">
 								</div>
 							</div>
 							<div class="col-md-3">
@@ -130,7 +130,7 @@
 								<div class="form-group">
 									<label for="detalles"><strong>Detalles</strong></label>
 									<textarea class="form-control" name="detalles" id="detalles"
-										rows="7"></textarea>
+										rows="7" th:field="*{detalles}"></textarea>
 								</div>
 							</div>
 							<div class="col-md-3">
