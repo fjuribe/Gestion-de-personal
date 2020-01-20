@@ -34,7 +34,7 @@
 				<div class="card-body">
 
 					<form th:action="@{/vacantes/save}" method="post"
-						th:object="${vacante}">
+						th:object="${vacante}" enctype="multipart/form-data">
 						<!--             para mostrar los errores al usuario -->
 						<div th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
 							role="alert">
