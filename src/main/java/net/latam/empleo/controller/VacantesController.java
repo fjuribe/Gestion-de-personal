@@ -75,7 +75,7 @@ public class VacantesController {
 
 		if (!multiPart.isEmpty()) {
 			// String ruta = "/empleos/img-vacantes/"; // Linux/MAC
-			String ruta = "C:/Users/javier1890/Desktop/CURSOS/CURSO_SPRING/empleos/img-vacantes/"; // Windows
+			String ruta = "C:/springBoot/empleos/img-vacantes/"; // Windows
 			String nombreImagen = Utileria.guardarArchivo(multiPart, ruta);
 			if (nombreImagen != null) { // La imagen si se subio
 				// Procesamos la variable nombreImagen
