@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import net.latam.empleo.model.Vacante;
 import net.latam.empleo.service.IVacanteService;
@@ -56,12 +57,19 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String mostrarHome(Model model) {
-	List<Vacante> lista=serviceVacantes.buscarTodas();
-		model.addAttribute("vacantes",lista);
+//	List<Vacante> lista=serviceVacantes.buscarTodas();
+//		model.addAttribute("vacantes",lista);
 		return "home";	
 	}
 	
-	
+	/**
+	 * model atributte sirve para agregar al modelo para agregar todos los los atributtos que queremos pero deben estar en el controlador
+	 * @param model
+	 */
+	@ModelAttribute
+	public void setGenericos(Model model) {
+		model.addAttribute("vacantes",serviceVacantes.buscarDestacadas());
+	}
 	/**
 	 * metodo que regresa una lista de objetos de tipo vacante
 	 */
