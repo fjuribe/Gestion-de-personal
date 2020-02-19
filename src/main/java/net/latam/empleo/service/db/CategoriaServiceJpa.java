@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import net.latam.empleo.model.Categoria;
@@ -11,6 +12,7 @@ import net.latam.empleo.repository.CategoriasRepository;
 import net.latam.empleo.service.ICategoriasService;
 
 @Service
+//@Primary
 public class CategoriaServiceJpa implements ICategoriasService {
 	
 
