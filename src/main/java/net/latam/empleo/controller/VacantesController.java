@@ -15,6 +15,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,7 +62,6 @@ public class VacantesController {
 
 	@GetMapping("/create")
 	public String crear(Vacante vacante, Model model) {
-		model.addAttribute("categorias", serviceCategorias.buscarTodas());
 		return "vacantes/formVacantes";
 	}
 
@@ -123,6 +123,19 @@ public class VacantesController {
 		return "redirect:/vacantes/index";
 	}
 
+	@GetMapping("/edit/{id}")
+	public String editar(@PathVariable("id") int idVacante,Model model) {
+		Vacante vacante=serviceVacantes.buscarPorId(idVacante);
+		model.addAttribute("vacante",vacante);
+
+		return "vacantes/formVacantes";
+		
+	}
+	
+	
+	
+	
+	
 	@GetMapping("/view/{id}")
 	public String verDetalle(@PathVariable("id") int idVacante, Model model) {
 
@@ -134,6 +147,11 @@ public class VacantesController {
 		// buscar los detalles de las vacantes en la BD
 		return "detalle";
 
+	}
+	
+	@ModelAttribute
+	public void setGenericos(Model model) {
+		model.addAttribute("categorias", serviceCategorias.buscarTodas());
 	}
 
 	@InitBinder
