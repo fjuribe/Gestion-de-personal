@@ -9,6 +9,7 @@ public interface ICategoriasService {
 	void guardar(Categoria categoria);
 	List<Categoria> buscarTodas();
 	Categoria buscarPorId(Integer idCategoria);
+	void eliminar(Integer idCategoria);
 	
 	/**
 	 *  TODO: 1. Crear la clase CategoriasServiceImpl que implemente esta Interfaz (Guardar las categorías en una lista (LinkedList))

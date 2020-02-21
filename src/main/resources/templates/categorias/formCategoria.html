@@ -43,12 +43,13 @@
 						</div>
 						
 						<div class="row">
+						<input type="hidden" th:field="${id}">
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="nombre">Nombre</label> <input type="text"
 										class="form-control" id="nombre" name="nombre"
 										placeholder="Escriba el nombre de la categoria"
-										required="required">
+										required="required" th:field="*{nombre}">
 								</div>
 							</div>
 						</div>
@@ -57,7 +58,7 @@
 								<div class="form-group">
 									<label for="descripcion">Descripción</label>
 									<textarea class="form-control" name="descripcion"
-										id="descripcion" rows="2"></textarea>
+										id="descripcion" rows="2" th:field="*{descripcion}"></textarea>
 								</div>
 							</div>
 						</div>
