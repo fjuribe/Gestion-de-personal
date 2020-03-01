@@ -3,18 +3,29 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import net.latam.empleo.model.Usuario;
 import net.latam.empleo.model.Vacante;
+import net.latam.empleo.service.ICategoriasService;
 import net.latam.empleo.service.IVacanteService;
 
 @Controller
 public class HomeController {
     
+	@Autowired
+	private ICategoriasService serviceCategoria;
+	
+	
+	
 	@Autowired
 	private IVacanteService serviceVacantes;
 	
@@ -62,13 +73,38 @@ public class HomeController {
 		return "home";	
 	}
 	
+	
+	@GetMapping("/signup")
+	public String registrarse(Usuario usuario) {
+		return "formRegistro";
+	}
+	
+	@PostMapping("/signup")
+	public String guardarReguistro(Usuario usuario,RedirectAttributes attributes) {
+		return "redirect:/usuarios/index";
+		
+	}
+	
+	@GetMapping("/search")
+	public String buscar(@ModelAttribute("search") Vacante vacante) {
+		System.out.println("buscando por:"+vacante);
+		return "home";
+		
+	}
+	
+	
+	
 	/**
 	 * model atributte sirve para agregar al modelo para agregar todos los los atributtos que queremos pero deben estar en el controlador
 	 * @param model
 	 */
 	@ModelAttribute
 	public void setGenericos(Model model) {
+		Vacante vacantesearch=new Vacante();
+		vacantesearch.reset();
 		model.addAttribute("vacantes",serviceVacantes.buscarDestacadas());
+		model.addAttribute("categorias", serviceCategoria.buscarTodas());
+		model.addAttribute("search", vacantesearch);
 	}
 	/**
 	 * metodo que regresa una lista de objetos de tipo vacante

@@ -8,12 +8,14 @@
 <meta name="author" content="">
 <link rel="icon" href="favicon.ico">
 
-<title>EmpleosApp | Creación de Categorías</title>
+<title>EmpleosApp | Creación de Ofertas de Trabajo</title>
 <!-- Bootstrap core CSS -->
 <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
 <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}"
+	rel="stylesheet">
+<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
 	rel="stylesheet">
 </head>
 
@@ -31,8 +33,8 @@
 				</h4>
 				<div class="card-body">
 
-					<form th:action="@{/vacantes/save}" method="post"
-						th:object="${vacante}" enctype="multipart/form-data">
+					<form th:action="@{/usuarios/save}" method="post"
+						th:object="${usuario}" enctype="multipart/form-data">
 						<!--             para mostrar los errores al usuario -->
 						<div th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
 							role="alert">
@@ -56,7 +58,7 @@
 							</div>
 							<div class="col-md-9">
 								<div class="form-group">
-									<label for="descripcion">Descripción</label> <input type="text"
+									<label for="descripcion">Contraseña</label> <input type="text"
 										class="form-control" id="descripcion" name="descripcion"
 										placeholder="Breve descripcion de la oferta de trabajo"
 										required="required" th:field="*{descripcion}">
@@ -74,17 +76,7 @@
 								</div>
 							</div>
 
-							<div class="col-md-3">
-								<div class="form-group">
-									<label for="estatus">Estatus</label> <select
-										class="form-control" name="estatus" id="estatus"
-										th:field="*{estatus}">
-										<option value="Creada">Creada</option>
-										<option value="Aprobada">Aprobada</option>
-										<option value="Eliminada">Eliminada</option>
-									</select>
-								</div>
-							</div>
+						
 							<div class="col-md-3">
 								<div class="form-group">
 									<label for="fecha">Fecha de Publicación</label> <input
@@ -93,54 +85,11 @@
 										th:field="*{fecha}">
 								</div>
 							</div>
-							<div class="col-md-3">
-								<div class="form-check">
-									<label class="form-check-label" for="destacado0"></label><br>
-									<input class="form-check-input" type="radio" name="destacado"
-										id="destacado" value="1" checked="checked"
-										th:field="*{destacado}"> <label
-										class="form-check-label" for="destacado1">Destacado</label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="radio" name="destacado"
-										id="destacado" value="0" th:field="*{destacado}"> <label
-										class="form-check-label" for="destacado2">No Destacado</label>
-								</div>
-							</div>
+						
 						</div>
-						<div class="row">
-							<div class="col-md-3">
-								<div class="form-group">
-									<label for="salario">Salario Ofrecido (Aprox)</label> <input
-										type="text" class="form-control" name="salario" id="salario"
-										placeholder="Salario aproximado." required="required"
-										th:field="*{salario}">
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="form-group">
-									<label for="archivoImagen">Imagen</label> <input type="file"
-										class="form-control-file" name="archivoImagen"
-										id="archivoImagen">
-								</div>
-							</div>
-						</div>
+						
 						<hr>
-						<div class="row">
-							<div class="col-md-9">
-								<div class="form-group">
-									<label for="detalles"><strong>Detalles</strong></label>
-									<textarea class="form-control" name="detalles" id="detalles"
-										rows="7" th:field="*{detalles}"></textarea>
-								</div>
-							</div>
-							<div class="col-md-3">
-								<label for="imagen">Imagen/Logo</label> <img
-									class="rounded mx-auto d-block"
-									th:src="@{/logos/{img}(img=${vacante.imagen})}"
-									alt="Generic placeholder image" width="200" height="200">
-							</div>
-						</div>
+						
 						<button type="submit" class="btn btn-primary">Guardar</button>
 					</form>
 				</div>

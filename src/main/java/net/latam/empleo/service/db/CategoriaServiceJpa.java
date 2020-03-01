@@ -12,7 +12,7 @@ import net.latam.empleo.repository.CategoriasRepository;
 import net.latam.empleo.service.ICategoriasService;
 
 @Service
-//@Primary
+@Primary
 public class CategoriaServiceJpa implements ICategoriasService {
 	
 
