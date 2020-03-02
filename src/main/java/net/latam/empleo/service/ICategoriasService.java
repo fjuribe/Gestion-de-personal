@@ -2,6 +2,9 @@ package net.latam.empleo.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import net.latam.empleo.model.Categoria;
 
 public interface ICategoriasService {
@@ -10,6 +13,7 @@ public interface ICategoriasService {
 	List<Categoria> buscarTodas();
 	Categoria buscarPorId(Integer idCategoria);
 	void eliminar(Integer idCategoria);
+	Page<Categoria> buscarTodas(Pageable page);
 	
 	/**
 	 *  TODO: 1. Crear la clase CategoriasServiceImpl que implemente esta Interfaz (Guardar las categorías en una lista (LinkedList))
