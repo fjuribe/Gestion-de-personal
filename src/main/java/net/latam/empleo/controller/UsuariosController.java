@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/usuarios")
 public class UsuariosController {
 
+
     
     @GetMapping("/index")
 	public String mostrarIndex(Model model) {

@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import net.latam.empleo.model.Usuario;
 import net.latam.empleo.model.Vacante;
 import net.latam.empleo.service.ICategoriasService;
+import net.latam.empleo.service.IUsuariosService;
 import net.latam.empleo.service.IVacanteService;
 
 @Controller
@@ -35,6 +37,10 @@ public class HomeController {
 	
 	@Autowired
 	private IVacanteService serviceVacantes;
+	
+	
+	@Autowired
+	private IUsuariosService serviceUsuario;
 	
 	
 	@GetMapping("/tabla")
@@ -50,15 +56,23 @@ public class HomeController {
 	 * @return
 	 */
 	@GetMapping("/index")
-	public String mostrarIndex(Authentication auth) {
-		String username=auth.getName();
-		System.out.println("Nombre del usuario :"+username);
-		
-		for (GrantedAuthority rol:auth.getAuthorities()) {
-			System.out.println("ROL:"+rol.getAuthority());
+	public String mostrarIndex(Authentication auth, HttpSession session) {
+		String username = auth.getName();
+		System.out.println("Nombre del usuario :" + username);
+
+		for (GrantedAuthority rol : auth.getAuthorities()) {
+			System.out.println("ROL:" + rol.getAuthority());
+		}
+
+		if (session.getAttribute("usuario") == null) {
+
+			Usuario usuario = serviceUsuario.buscarPorUsername(username);
+			usuario.setPassword(null);
+			System.out.println("Usuario:"+usuario);
+			session.setAttribute("usuario", usuario);
+			
 		}
 		return "redirect:/";
-		
 	}
 	
 	

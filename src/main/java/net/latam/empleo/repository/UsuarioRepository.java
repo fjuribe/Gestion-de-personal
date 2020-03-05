@@ -8,4 +8,6 @@ import net.latam.empleo.model.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
+	Usuario findByUsername(String username);
+	
 }
