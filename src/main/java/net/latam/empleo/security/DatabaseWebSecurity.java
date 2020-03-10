@@ -3,11 +3,14 @@ package net.latam.empleo.security;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -33,7 +36,13 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
 				.antMatchers("/bootstrap/**", "/images/**", "/tinymce/**", "/logos/**").permitAll()
 				
 				// Las vistas públicas no requieren autenticación
-				.antMatchers("/", "/signup", "/search", "/vacantes/view/**").permitAll()
+				.antMatchers("/",
+						 "/login",
+						 "/signup",
+						 "/search",
+						 "/bcrypt/**",
+	        			 "/about",
+	        			 "/vacantes/view/**").permitAll()
 				
 				// Asignar permisos a URLs por ROLES
 				.antMatchers("/vacantes/**").hasAnyAuthority("SUPERVISOR","ADMINISTRADOR")
@@ -45,7 +54,14 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
 				.anyRequest().authenticated()
 				
 				// El formulario de Login no requiere autenticacion
-				.and().formLogin().permitAll();
+				.and().formLogin().loginPage("/login").permitAll();
 	}
-
+	/**
+	 *  Implementación de Spring Security que encripta passwords con el algoritmo Bcrypt
+	 * @return
+	 */
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+	    return new BCryptPasswordEncoder();
+	}
 }
