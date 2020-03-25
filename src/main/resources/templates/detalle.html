@@ -44,7 +44,7 @@
                     <p class="card-text" th:utext="${vacante.detalles}"></p>
                   </div>
                 </div>   
-                <a class="btn btn-primary" th:href="@{/logout}" role="button" title="Quiero aplicar para esta oferta de trabajo."><i class="fas fa-file" aria-hidden="true"></i> Aplicar</a>                            
+                <a sec:authorize="isAuthenticated()" class="btn btn-primary" th:href="@{/solicitudes/create/{id} (id=${vacante.id}) }" role="button" title="Quiero aplicar para esta oferta de trabajo."><i class="fas fa-file" aria-hidden="true"></i> Aplicar</a>                            
               </div>
             </div>  
           </div>

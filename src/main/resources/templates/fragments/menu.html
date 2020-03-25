@@ -11,6 +11,8 @@
 
 	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 		<ul class="navbar-nav mr-auto">
+		 <li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
+      <a class="nav-link" th:href="@{/solicitudes/indexPaginate}">Solicitudes</a>
 			<li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')"><a class="nav-link" th:href="@{/vacantes/indexPaginate}">Vacantes</a>
 
 			<li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')"><a class="nav-link"
